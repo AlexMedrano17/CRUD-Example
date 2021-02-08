@@ -1,0 +1,16 @@
+table {
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#edit:hover{
+    background-color: #e6e6e6 !important;
+    border-radius: 5px;
+}
+
+#drop:hover{
+    background-color: #ffe7e7 !important;
+    border-radius: 5px;
+    
+}

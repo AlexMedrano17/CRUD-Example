@@ -1,0 +1,90 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">CRUD super sencillo</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mt-4">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th>
+                <input type="checkbox" [(ngModel)]="btnCheck">
+              </th>   
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Correo electronico</th>
+              <th scope="col">Pais</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employeeArray" class="table-light">
+              <td>
+                <input type="checkbox" [checked]="employee == selectedEmployee || btnCheck" disabled>
+              </td>  
+              <td scope="row">
+                <span class="badge badge-primary">{{employee.id}}</span>   
+              </td>
+              <td>{{employee.name}}</td>
+              <td>{{employee.correo}}</td>   
+              <td>{{employee.country}}</td>
+              <td>
+                <button (click)="OpenEdit(employee)" id="edit" class="border-0" style="background: transparent;">
+                  <i class="fa fa-edit fa-lg"></i>
+                </button>
+                <button (click)="Drop(employee)" id="drop" class="border-0" style="background: transparent;">
+                  <i class="fa fa-trash fa-lg text-danger"></i>
+                </button>
+              </td>        
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card mt-4 mb-4">
+        <div class="card-body">
+          <div class="card-title pb-2">
+            <h3 class="float-left">Guarda un nuevo empleado</h3> 
+            <input type="button" (click)="AddOrEdit()" id="btnSubmit"
+              class="btn btn-primary float-right" value="Guardar">
+            <input type="button" *ngIf="btnCheck" class="btn btn-danger float-right mr-2" 
+              (click)="DropAll()" id="btnEliminar" value="Eliminar">
+          </div>
+          <div class="input-group mt-5 mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-user" style="font-size: 20px"></i>
+              </div>
+            </div>
+            <input type="text" [(ngModel)]="selectedEmployee.name" 
+                   placeholder="Nombre del empleado" class="form-control">
+          </div>
+          <div class="input-group mt-2 mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-envelope" style="font-size: 14px;"></i>
+              </div>
+            </div>
+            <input type="text" [(ngModel)]="selectedEmployee.correo" 
+                   placeholder="Correo del empleado" class="form-control">
+          </div>
+          <div class="input-group mt-2 mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-map-marker" style="font-size: 25px"></i>
+              </div>
+            </div>
+            <input type="text" [(ngModel)]="selectedEmployee.country" 
+                   placeholder="Pais del empleado" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
